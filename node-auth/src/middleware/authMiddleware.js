@@ -8,7 +8,6 @@ const protect = async (req, res, next) => {
   ) {
     try {
       const parts = req.headers.authorization.split(" ");
-      console.log(`Parts of token: ${parts}`);
       token = parts[1];
 
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
