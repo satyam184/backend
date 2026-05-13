@@ -1,13 +1,23 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const app = require("./src/app");
 const connectDB = require("./src/config/db");
+const generateSwagger = require("./swagger-autogen");
 
-connectDB();
+async function startServer() {
+  const swaggerGenerated = await generateSwagger();
+  if (!swaggerGenerated) {
+    console.warn("Swagger docs could not be generated.");
+  }
 
-const PORT = process.env.PORT || 5000;
+  const app = require("./src/app");
+  await connectDB();
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  const PORT = process.env.PORT || 5000;
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+startServer();
