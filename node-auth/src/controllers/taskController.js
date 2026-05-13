@@ -15,4 +15,18 @@ const createTask = async (req, res) => {
   }
 };
 
-module.exports = { createTask };
+const getTasks = async (req, res) => {
+  try {
+    console.log(`request user: ${req.user}`);
+    const tasks = await Task.find({
+      user: req.user,
+    });
+    res.status(200).json(tasks);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+module.exports = { createTask, getTasks };
