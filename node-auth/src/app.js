@@ -16,6 +16,12 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-app.use("/api/tasks", taskRoutes);
+app.use(
+  "/api/tasks",
+  taskRoutes
+  /* #swagger.security = [{
+        "bearerAuth": []
+  }] */
+);
 
 module.exports = app;

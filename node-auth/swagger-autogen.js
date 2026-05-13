@@ -1,6 +1,9 @@
 const path = require("path");
 const dotenv = require("dotenv");
-const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.0" });
+const swaggerAutogen = require("swagger-autogen")({
+  openapi: "3.0.0",
+  autoHeaders: false,
+});
 
 dotenv.config({
   path: path.resolve(__dirname, "../.env"),
