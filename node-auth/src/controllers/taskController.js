@@ -62,7 +62,7 @@ const updateTask = async (req, res) => {
       });
     }
     if (task.user.toString() !== req.user) {
-      return res.staus(401).json({
+      return res.status(401).json({
         message: "Not authorized",
       });
     }

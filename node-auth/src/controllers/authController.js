@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../utils/generateToken");
-const { token } = require("morgan");
 
 const registerUser = async (req, res) => {
   try {
@@ -55,7 +54,7 @@ const loginUser = async (req, res) => {
       });
     }
 
-    res.status(400).json({
+    res.status(200).json({
       token: generateToken(user._id),
       user: {
         id: user._id,
