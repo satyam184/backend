@@ -16,7 +16,7 @@ router.post(
 );
 router.post(
   "/login",
-  validateSignup,
+  validateLogin,
   handleValidationErrors,
   authController.loginUser,
 );
@@ -28,5 +28,9 @@ router.get(
         "bearerAuth": []
   }] */
 );
+
+router.post("/refresh-token", authController.refreshAccessToken);
+
+router.post("/logout", authController.logoutUser);
 
 module.exports = router;
