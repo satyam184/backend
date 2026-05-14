@@ -5,6 +5,13 @@ const authController = require("../controllers/authController");
 
 router.post("/signup", authController.registerUser);
 router.post("/login", authController.loginUser);
-router.get("/profile", protect, authController.getProfile);
+router.get(
+  "/profile",
+  protect,
+  authController.getProfile
+  /* #swagger.security = [{
+        "bearerAuth": []
+  }] */
+);
 
 module.exports = router;
