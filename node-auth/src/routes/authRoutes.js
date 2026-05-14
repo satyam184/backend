@@ -2,13 +2,28 @@ const express = require("express");
 const router = express.Router();
 const protect = require("../middleware/authMiddleware");
 const authController = require("../controllers/authController");
+const {
+  validateSignup,
+  validateLogin,
+  handleValidationErrors,
+} = require("../validators/authValidator");
 
-router.post("/signup", authController.registerUser);
-router.post("/login", authController.loginUser);
+router.post(
+  "/signup",
+  validateSignup,
+  handleValidationErrors,
+  authController.registerUser,
+);
+router.post(
+  "/login",
+  validateSignup,
+  handleValidationErrors,
+  authController.loginUser,
+);
 router.get(
   "/profile",
   protect,
-  authController.getProfile
+  authController.getProfile,
   /* #swagger.security = [{
         "bearerAuth": []
   }] */

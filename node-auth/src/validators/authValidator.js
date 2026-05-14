@@ -9,7 +9,7 @@ const validateSignup = [
 ];
 
 const validateLogin = [
-  body("email").withMessage("Valid email is required"),
+  body("email").notEmpty().withMessage("Valid email is required"),
   body("password").isLength({ min: 6 }).withMessage("password is required"),
 ];
 
@@ -17,8 +17,9 @@ const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
+    var err;
     return res.status(400).json({
-      errors: errors.array(),
+      errors: errors.array().map((err) => err.msg),
     });
   }
   next();
