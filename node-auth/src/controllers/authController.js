@@ -140,7 +140,7 @@ const logoutUser = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;
     if (refreshToken) {
-      const user = await User.findById({
+      const user = await User.findOne({
         refreshToken,
       });
 
